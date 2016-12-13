@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>360° Image Browser</title>
+    <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-event-set-component/master/dist/aframe-event-set-component.min.js"></script>
+    <script>
+AFRAME.registerComponent('set-sky', {
+    schema: {default:''},
+    init() {
+        const sky = document.querySelector('a-sky');
+        this.el.addEventListener('mouseenter', () => {
+            sky.setAttribute('src', this.data);
+        });
+    }
+});
+    </script>
+</head>
+
+<body>
+    <a-scene>
+        <a-assets>
+
+            <!--<audio id="click-sound" src="audio/click.ogg"></audio>-->
+            <img id="city-thumb" src="img/thumb-city.jpg">
+            <img id="cubes-thumb" src="img/thumb-cubes.jpg">
+            <img id="sechelt-thumb" src="img/thumb-sechelt.jpg">
+            <!-- Images. -->
+            <img id="city" src="img/city.jpg">
+            <img id="city-thumb" src="img/thumb-city.jpg">
+            <img id="cubes" src="img/cubes.jpg">
+            <img id="cubes-thumb" src="img/thumb-cubes.jpg">
+            <img id="sechelt" src="img/sechelt.jpg">
+            <img id="sechelt-thumb" src="img/thumb-sechelt.jpg">
+
+            <!-- ... -->
+            <!-- Specify Nunjucks. -->
+            <script id="plane" type="text/nunjucks">
+                <a-plane class="link" height="100" width="100" side="double"
+                       material="shader: flat; src: {{ thumb }}"
+                      sound="on: click; src: #click-sound"></a-plane>
+             </script>
+        </a-assets>
+        <!-- 360-degree image. -->
+        <a-sky id="image-360" radius="100" src="#city"></a-sky>
+
+        <!-- Link. -->
+        <a-plane set-sky="#city" geometry="height:7;width:7;primitive:plane" position="-7.43 -0.43 -14.01" material="side:double;color:#CCC;fog:false;src:#city-thumb"
+            scale="0.5 0.5 0.5"event-set__1="_event: mousedown; scale: .5 .5 .5" event-set__2="_event: mouseup; scale: .7 .7 .5"
+            event-set__3="_event: mouseenter; scale: .7 .7 .5" event-set__4="_event: mouseleave; scale: .5 .5 .5">
+        </a-plane>
+        <a-plane set-sky="#cubes" geometry="height:7;width:7;primitive:plane" position="-1.33 -0.53 -14" material="side:double;color:#CCC;fog:false;src:#cubes-thumb"
+            scale="0.5 0.5 0.5"event-set__1="_event: mousedown; scale: .5 .5 .5" event-set__2="_event: mouseup; scale: .7 .7 .5"
+            event-set__3="_event: mouseenter; scale: .7 .7 .5" event-set__4="_event: mouseleave; scale: .5 .5 .5">
+        </a-plane>
+
+
+        <a-plane id="link3" set-sky="#sechelt" geometry="height:7;width:7;primitive:plane" position="4.7 -0.62 -15.53" material="side:double;color:#CCC;fog:false;src:#sechelt-thumb"
+            scale="0.5 0.5 0.5" event-set__1="_event: mousedown; scale: .5 .5 .5" event-set__2="_event: mouseup; scale: .7 .7 .5"
+            event-set__3="_event: mouseenter; scale: .7 .7 .5" event-set__4="_event: mouseleave; scale: .5 .5 .5">
+        </a-plane>
+
+
+        <a-camera>
+            <a-cursor id="cursor">
+                <a-animation begin="click" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+                <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+            </a-cursor>
+        </a-camera>
+    </a-scene>
+</body>
+
+</html>

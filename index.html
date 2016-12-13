@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>360° Image Browser</title>
+    <script src="https://aframe.io/releases/0.3.2/aframe.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-event-set-component/master/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script>
+    <script>
+AFRAME.registerComponent('set-sky', {
+    schema: {default:''},
+    init() {
+        const sky = document.querySelector('a-sky');
+        this.el.addEventListener('mouseenter', () => {
+            sky.setAttribute('src', this.data);
+        });
+    }
+});
+    </script>
+</head>
+
+<body>
+    <a-scene>
+        <a-assets>
+
+            <!--<audio id="click-sound" src="audio/click.ogg"></audio>-->
+            <!-- Images. -->
+
+            <!-- ...House VR work Images -->
+            <img id="livingroom1" src="house/livingroom1.jpg">
+            <img id="diningroom1" src="house/diningroom1.jpg">
+            <img id="diningroom" src="house/diningroom.jpg">
+            <img id="livingroom" src="house/livingroom.jpg">
+            <img id="entrance" src="house/entrance.jpg">
+            <img id="bedroom4" src="house/bedroom4.jpg">
+
+
+
+            <!-- ... -->
+
+            <a-mixin id="entity_default" geometry="height:6;width:10;primitive:plane" material="side:double;color: grey;fog:false;" scale="0.5 0.5 0.5">
+            </a-mixin>
+            <a-mixin id="plane_default" geometry="height:5;width:9;primitive:plane"></a-mixin>
+            <a-mixin id="plane__opaque_default" geometry="height:1.7;width:9;primitive:plane" material="color: black;opacity:0.6" ></a-mixin>
+
+        </a-assets>
+        <!-- 360-degree image. -->
+        <a-sky id="image-360" radius="100" src="#livingroom1"></a-sky>
+
+      
+
+        <!--<a-entity bmfont-text="text: Living Room;color: black;" position="1.1 1 8"></a-entity>-->
+        <!-- Link. -->
+        <a-entity mixin="entity_default" position="-15.33 -7.5 -14">
+            <a-plane mixin="plane_default" set-sky="#livingroom1" position="1.1 0.7 1" material="src:#livingroom1"></a-plane>
+            <a-entity bmfont-text="text: Living Room;color: white;" position="0 0 3" scale="6 6 6"></a-entity>
+            <!--<a-plane geometry="height:2;width:9;" materials="color:black;opacity:.3" position="0 0 3"></a-plane>-->
+            <!--<a-plane geometry="height:1.7;width:9;primitive:plane" material="color: black;opacity:0.6" position="1.19 -0.88 1.1"></a-plane>-->
+            <a-plane mixin="plane__opaque_default" position="1.19 -0.88 1.1"></a-plane>
+        </a-entity>
+
+        <a-entity mixin="entity_default" position="-9.33 -7.5 -14">
+            <a-plane mixin="plane_default" set-sky="#diningroom1" position=".65 0.7 1" material="src:#diningroom1"></a-plane>
+            <a-entity bmfont-text="text: Dining Room;color: white;" position="-1 0 3" scale="6 6 6"></a-entity>
+            <a-plane mixin="plane__opaque_default" position=".76 -0.88 1.1"></a-plane>
+        </a-entity>
+
+        <a-entity mixin="entity_default" position="-3.33 -7.5 -14">
+            <a-plane mixin="plane_default" set-sky="#diningroom" position="0.25 0.7 1" material="src:#diningroom"></a-plane>
+             <a-entity bmfont-text="text: Dining Room;color: white;" position="-2 0 3" scale="6 6 6"></a-entity>
+             <a-plane mixin="plane__opaque_default" position=".25 -0.88 1.1"></a-plane>
+        </a-entity>
+
+        <a-entity mixin="entity_default" position="2.70 -7.5 -14">
+            <a-plane mixin="plane_default" set-sky="#livingroom" position="-.25 0.7 1" material="src:#livingroom"></a-plane>
+             <a-entity bmfont-text="text: Living Room;color: white;" position="-3.5 0 3" scale="6 6 6"></a-entity>
+             <a-plane mixin="plane__opaque_default" position="-.3 -0.88 1.1"></a-plane>
+        </a-entity>
+
+        <a-entity mixin="entity_default" position="8.7 -7.5 -14">
+            <a-plane mixin="plane_default" set-sky="#entrance" position="-.65 0.7 1" material="src:#entrance"></a-plane>
+             <a-entity bmfont-text="text: Entrance;color: white;" position="-4 0 3" scale="6 6 6"></a-entity>
+             <a-plane mixin="plane__opaque_default" position="-.72 -0.88 1.1"></a-plane>
+        </a-entity>
+
+        <a-entity mixin="entity_default" position="14.7 -7.5 -14">
+            <a-plane mixin="plane_default" set-sky="#bedroom4" position="-1.05 0.7 1" material="src:#bedroom4"></a-plane>
+             <a-entity bmfont-text="text: Bedroom;color: white;" position="-5 0 3" scale="6 6 6"></a-entity>
+             <a-plane mixin="plane__opaque_default" position="-1.15 -0.88 1.1"></a-plane>
+        </a-entity>
+
+        <a-camera>
+            <a-cursor id="cursor">
+                <a-animation begin="click" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+                <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+            </a-cursor>
+        </a-camera>
+    </a-scene>
+</body>
+
+</html>
