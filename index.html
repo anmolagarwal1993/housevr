@@ -35,73 +35,81 @@ AFRAME.registerComponent('set-sky', {
 
             <!-- Audio Info. -->
             <audio id="livingroomsound" src="sound/livingroom.mp3">
-            <audio id="diningroomsound" src="sound/diningroom.mp3">
-            <audio id="bathroomsound" src="sound/bathroom.mp3">
-            <audio id="entrancesound" src="sound/entrance.mp3">
-            <audio id="bedroomsound" src="sound/bedroom.mp3">
-            <audio id="kitchensound" src="sound/bedroom.mp3">
-            <!--............. -->
+                <audio id="diningroomsound" src="sound/diningroom.mp3">
+                    <audio id="bathroomsound" src="sound/bathroom.mp3">
+                        <audio id="entrancesound" src="sound/entrance.mp3">
+                            <audio id="bedroomsound" src="sound/bedroom.mp3">
+                                <audio id="kitchensound" src="sound/bedroom.mp3">
+                                    <!--............. -->
 
-            <!-- ...House VR work Images -->
-            <img id="livingroom1" src="house/livingroom1.jpg">
-            <img id="diningroom1" src="house/diningroom1.jpg">
-            <img id="diningroom" src="house/diningroom.jpg">
-            <img id="livingroom" src="house/livingroom.jpg">
-            <img id="entrance" src="house/entrance.jpg">
-            <img id="bedroom4" src="house/bedroom4.jpg">
-            <img id="map" src="house/floor-map.png">
+                                    <!-- ...House VR work Images -->
+                                    <img id="livingroom1" src="house/livingroom1.jpg">
+                                    <img id="diningroom1" src="house/diningroom1.jpg">
+                                    <img id="diningroom" src="house/diningroom.jpg">
+                                    <img id="livingroom" src="house/livingroom.jpg">
+                                    <img id="entrance" src="house/entrance.jpg">
+                                    <img id="bedroom4" src="house/bedroom4.jpg">
+                                    <img id="map" src="house/floor-map.png">
 
-             <!-- ........ -->
+                                    <!-- ........ -->
 
 
-             
-            <!-- Mixins For Plane, Entity & Opaqicity... -->
 
-            <a-mixin id="entity_default" geometry="height:6;width:10;primitive:plane" material="side:double;color: grey;fog:false;" scale="0.5 0.5 0.5">
-            </a-mixin>
-            <a-mixin id="plane_default" geometry="height:5;width:9;primitive:plane"></a-mixin>
-            <a-mixin id="plane__opaque_default" geometry="height:1.7;width:9;primitive:plane" material="color: black;opacity:0.6" ></a-mixin>
+                                    <!-- Mixins For Plane, Entity & Opaqicity... -->
+
+                                    <a-mixin id="entity_default" geometry="height:6;width:10;primitive:plane" material="side:double;color: grey;fog:false;" scale="0.5 0.5 0.5">
+                                    </a-mixin>
+                                    <a-mixin id="plane_default" geometry="height:5;width:9;primitive:plane" rotation="0 0 0"></a-mixin>
+                                    <a-mixin id="plane__opaque_default" geometry="height:1.7;width:9;primitive:plane" material="color: black;opacity:0.6"></a-mixin>
 
         </a-assets>
         <!-- 360-degree image. -->
-        <a-sky id="image-360" radius="100" src="#livingroom1"></a-sky>
-        
-        
+        <a-sky id="image-360" radius="100" src="#livingroom1">
+            <a-animation attribute="rotation" dur="100000" fill="forwards" to="0 360 0" repeat="indefinite" easing="linear"></a-animation>
+        </a-sky>
+
+
         <!-- Link. -->
         <a-entity mixin="entity_default" position="-15.33 -7.5 -14">
-            <a-plane mixin="plane_default" set-circle="-.3 -.32 0.09"set-sky="#livingroom1" position="1.1 0.7 1" material="src:#livingroom1" sound="on: mouseenter; src: #livingroomsound;volume: 25"></a-plane>
+            <a-plane mixin="plane_default" set-circle="-.3 -.32 0.09" set-sky="#livingroom1" position="1.1 0.7 1" material="src:#livingroom1"
+                sound="on: mouseenter; src: #livingroomsound;volume: 25"></a-plane>
             <a-entity bmfont-text="text: Living Room;color: white;" position="0 0 3" scale="6 6 6"></a-entity>
             <a-plane mixin="plane__opaque_default" position="1.19 -0.88 1.1"></a-plane>
         </a-entity>
 
         <a-entity mixin="entity_default" position="-9.33 -7.5 -14">
-            <a-plane mixin="plane_default" set-circle="-.36 .05 0.09" set-sky="#diningroom1" position=".65 0.7 1" material="src:#diningroom1" sound="on: mouseenter; src: #diningroomsound;volume: 25"></a-plane>
+            <a-plane mixin="plane_default" set-circle="-.36 .05 0.09" set-sky="#diningroom1" position=".65 0.7 1" material="src:#diningroom1"
+                sound="on: mouseenter; src: #diningroomsound;volume: 25"></a-plane>
             <a-entity bmfont-text="text: Dining Room;color: white;" position="-1 0 3" scale="6 6 6"></a-entity>
             <a-plane mixin="plane__opaque_default" position=".76 -0.88 1.1"></a-plane>
         </a-entity>
 
         <a-entity mixin="entity_default" position="-3.33 -7.5 -14">
-            <a-plane mixin="plane_default" set-circle="-.36 0.05 0.09" set-sky="#diningroom" position="0.25 0.7 1" material="src:#diningroom" sound="on: mouseenter; src: #diningroomsound ;volume: 25"></a-plane>
-             <a-entity bmfont-text="text: Dining Room;color: white;" position="-2 0 3" scale="6 6 6"></a-entity>
-             <a-plane mixin="plane__opaque_default" position=".25 -0.88 1.1"></a-plane>
+            <a-plane mixin="plane_default" set-circle="-.36 0.05 0.09" set-sky="#diningroom" position="0.25 0.7 1" material="src:#diningroom"
+                sound="on: mouseenter; src: #diningroomsound ;volume: 25"></a-plane>
+            <a-entity bmfont-text="text: Dining Room;color: white;" position="-2 0 3" scale="6 6 6"></a-entity>
+            <a-plane mixin="plane__opaque_default" position=".25 -0.88 1.1"></a-plane>
         </a-entity>
 
         <a-entity mixin="entity_default" position="2.70 -7.5 -14">
-            <a-plane mixin="plane_default" set-circle="-.3 -.32 0.09" set-sky="#livingroom" position="-.25 0.7 1" material="src:#livingroom" sound="on: mouseenter; src: #livingroomsound ;volume: 25"></a-plane>
-             <a-entity bmfont-text="text: Living Room;color: white;" position="-3.5 0 3" scale="6 6 6"></a-entity>
-             <a-plane mixin="plane__opaque_default" position="-.3 -0.88 1.1"></a-plane>
+            <a-plane mixin="plane_default" set-circle="-.3 -.32 0.09" set-sky="#livingroom" position="-.25 0.7 1" material="src:#livingroom"
+                sound="on: mouseenter; src: #livingroomsound ;volume: 25"></a-plane>
+            <a-entity bmfont-text="text: Living Room;color: white;" position="-3.5 0 3" scale="6 6 6"></a-entity>
+            <a-plane mixin="plane__opaque_default" position="-.3 -0.88 1.1"></a-plane>
         </a-entity>
 
         <a-entity mixin="entity_default" position="8.7 -7.5 -14">
-            <a-plane mixin="plane_default" set-circle="-0.12 0 0" set-sky="#entrance" position="-.65 0.7 1" material="src:#entrance" sound="on: mouseenter; src: #entrancesound;volume: 25"></a-plane>
-             <a-entity bmfont-text="text: Entrance;color: white;" position="-4 0 3" scale="6 6 6"></a-entity>
-             <a-plane mixin="plane__opaque_default" position="-.72 -0.88 1.1"></a-plane>
+            <a-plane mixin="plane_default" set-circle="-0.12 0 0" set-sky="#entrance" position="-.65 0.7 1" material="src:#entrance"
+                sound="on: mouseenter; src: #entrancesound;volume: 25"></a-plane>
+            <a-entity bmfont-text="text: Entrance;color: white;" position="-4 0 3" scale="6 6 6"></a-entity>
+            <a-plane mixin="plane__opaque_default" position="-.72 -0.88 1.1"></a-plane>
         </a-entity>
 
         <a-entity mixin="entity_default" position="14.7 -7.5 -14">
-            <a-plane mixin="plane_default" set-circle="-.3 .37 0.02" set-sky="#bedroom4" position="-1.05 0.7 1" material="src:#bedroom4" sound="on: mouseenter; src: #bedroomsound;volume: 25"></a-plane>
-             <a-entity bmfont-text="text: Bedroom;color: white;" position="-5 0 3" scale="6 6 6"></a-entity>
-             <a-plane mixin="plane__opaque_default" position="-1.15 -0.88 1.1"></a-plane>
+            <a-plane mixin="plane_default" set-circle="-.3 .37 0.02" set-sky="#bedroom4" position="-1.05 0.7 1" material="src:#bedroom4"
+                sound="on: mouseenter; src: #bedroomsound;volume: 25"></a-plane>
+            <a-entity bmfont-text="text: Bedroom;color: white;" position="-5 0 3" scale="6 6 6"></a-entity>
+            <a-plane mixin="plane__opaque_default" position="-1.15 -0.88 1.1"></a-plane>
         </a-entity>
 
         <a-camera>
@@ -111,7 +119,9 @@ AFRAME.registerComponent('set-sky', {
             </a-cursor>
 
             <a-plane position="3 -2 -8" rotation="0 0 0" material="src:#map;" scale="5 4 4">
-                <a-circle position="-.2 .15 .6" color="green" radius=".04" material="opacity:0.6" ></a-circle>
+                <a-circle position="-.16 .15 .6" color="green" radius=".02" material="opacity:0.6">
+                        <a-animation attribute="radius" from=".02" to=".04" repeat="indefinite" dur="2000"></a-animation> 
+                </a-circle>
             </a-plane>
         </a-camera>
     </a-scene>
